@@ -513,7 +513,9 @@ img { max-width: 100%; display: block; }
   100% { width: 130px; height: 130px; opacity: 0; }
 }
 .pin-label {
-  position: absolute; left: 16px; top: -28px;
+  position: absolute; left: 0; top: -34px;
+  transform: translateX(-50%);
+  text-align: center;
   font-family: var(--serif); font-size: 15px; letter-spacing: 3px;
   color: var(--gold-light); white-space: nowrap;
   text-shadow: 0 0 12px rgba(0,0,0,.9), 0 0 18px rgba(212,175,55,.5);
@@ -664,6 +666,10 @@ img { max-width: 100%; display: block; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   .hero-side-label { font-size: 16px; }
   .logo-tag { display: none; }
+  .pin-label {
+    font-size: 12px; letter-spacing: 1px; top: -40px;
+    white-space: normal; max-width: 110px; line-height: 1.15;
+  }
 }
 @media (max-width: 460px) {
   .services-grid   { grid-template-columns: 1fr; }
