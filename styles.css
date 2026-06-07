@@ -822,73 +822,59 @@ img { max-width: 100%; display: block; }
   text-shadow: 0 0 10px rgba(59,155,255,.55);
 }
 
-/* ===================== FLOATING CONTACT (WhatsApp + Call) ===================== */
-.floating-contact {
+/* ===================== CONTACT BUTTONS (frosted glass, bottom-right) ===================== */
+.contact-bar {
   position: fixed;
-  right: 18px; bottom: 88px;
+  right: 18px; bottom: 88px;     /* same spot as the old buttons */
   z-index: 90;
-  display: none;                 /* hidden on desktop — shown on mobile/tablet */
-  flex-direction: column; gap: 14px;
+  display: none;                 /* shown on mobile/tablet */
+  flex-direction: column;
+  align-items: flex-end;         /* stack to the right corner */
+  gap: 12px;
 }
-.fab {
-  position: relative;
-  width: 56px; height: 56px;
-  display: grid; place-items: center;
-  border-radius: 50%;
-  color: #fff; font-size: 24px;
-  box-shadow: 0 6px 20px rgba(0,0,0,.45);
-  transition: transform .25s ease, box-shadow .25s ease;
-  animation: fabIn .55s cubic-bezier(.2,.8,.3,1) both;
+.cbar-btn {
+  display: flex; align-items: center; gap: 9px;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-family: var(--sans);
+  font-size: 13px; font-weight: 600; letter-spacing: 1px;
+  color: var(--gold-light);
+  white-space: nowrap;
+  /* iOS frosted glass — themed dark + gold */
+  background: rgba(16,14,10,.5);
+  border: 1px solid rgba(212,175,55,.32);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.5),
+    inset 0 1px 0 rgba(255,255,255,.07),
+    0 0 22px rgba(212,175,55,.12);
+  transition: background .25s ease, color .25s ease, box-shadow .25s ease, transform .25s ease;
+  animation: barRise .55s cubic-bezier(.2,.8,.3,1) both;
 }
-.fab-whatsapp { background: linear-gradient(160deg, #36e07e, #128c3e); animation-delay: 1.3s; }
-.fab-call     { background: linear-gradient(160deg, #46a6ff, #1567d3); font-size: 21px; animation-delay: 1.45s; }
-.fab:hover { transform: translateY(-3px) scale(1.07); }
-.fab-whatsapp:hover { box-shadow: 0 0 0 4px rgba(54,224,126,.25),  0 10px 26px rgba(0,0,0,.5); }
-.fab-call:hover     { box-shadow: 0 0 0 4px rgba(70,166,255,.25),  0 10px 26px rgba(0,0,0,.5); }
-
-/* Soft expanding pulse ring (matches the page's ripple/glow motif) */
-.fab::before {
-  content: ""; position: absolute; inset: 0;
-  border-radius: 50%; pointer-events: none;
+.cbar-btn:nth-child(1) { animation-delay: .8s; }
+.cbar-btn:nth-child(2) { animation-delay: .92s; }
+.cbar-btn i { font-size: 17px; color: var(--gold); transition: color .25s ease; }
+.cbar-btn:hover,
+.cbar-btn:active {
+  background: rgba(212,175,55,.16);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.55),
+    inset 0 0 0 1px rgba(212,175,55,.4),
+    0 0 26px rgba(212,175,55,.18);
 }
-.fab-whatsapp::before { animation: pulseGreen 2.6s ease-out infinite; }
-.fab-call::before     { animation: pulseBlue  2.6s ease-out infinite; animation-delay: 1.3s; }
-@keyframes pulseGreen {
-  0%   { box-shadow: 0 0 0 0 rgba(54,224,126,.55); }
-  70%  { box-shadow: 0 0 0 16px rgba(54,224,126,0); }
-  100% { box-shadow: 0 0 0 0 rgba(54,224,126,0); }
-}
-@keyframes pulseBlue {
-  0%   { box-shadow: 0 0 0 0 rgba(70,166,255,.55); }
-  70%  { box-shadow: 0 0 0 16px rgba(70,166,255,0); }
-  100% { box-shadow: 0 0 0 0 rgba(70,166,255,0); }
-}
-@keyframes fabIn {
-  from { opacity: 0; transform: translateY(22px) scale(.6); }
+.cbar-btn:hover i { color: var(--gold-light); }
+@keyframes barRise {
+  from { opacity: 0; transform: translateY(26px); }
   to   { opacity: 1; transform: none; }
 }
-
-/* Hover label */
-.fab::after {
-  content: attr(data-label);
-  position: absolute; right: 68px; top: 50%;
-  transform: translateY(-50%) translateX(8px);
-  background: rgba(7,7,7,.92);
-  color: var(--text);
-  border: 1px solid var(--border-gold);
-  padding: 6px 12px; border-radius: 8px;
-  font-size: 12px; letter-spacing: 1px; white-space: nowrap;
-  opacity: 0; pointer-events: none;
-  transition: opacity .25s ease, transform .25s ease;
-  box-shadow: 0 6px 18px rgba(0,0,0,.4);
-}
-.fab:hover::after { opacity: 1; transform: translateY(-50%) translateX(0); }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-line { opacity: 1; animation: none; }
   .hero-sub, .hero-actions { opacity: 1; animation: none; }
-  .fab { animation: none; }
-  .fab::before { animation: none; }
+  .contact-bar { animation: none; }
 }
 
 /* ===================== RESPONSIVE ===================== */
@@ -915,8 +901,8 @@ img { max-width: 100%; display: block; }
   .hero-left  { clip-path: polygon(0 0,100% 0,80% 100%,0 100%); }
   .hero-right { clip-path: polygon(20% 0,100% 0,100% 100%,0 100%); }
 
-  /* Quick-contact buttons only on mobile/tablet */
-  .floating-contact { display: flex; }
+  /* Quick-contact bar only on mobile/tablet */
+  .contact-bar { display: flex; }
 }
 @media (max-width: 760px) {
   .services-grid   { grid-template-columns: repeat(2, 1fr); }
@@ -976,11 +962,10 @@ img { max-width: 100%; display: block; }
   /* Keep decorative sparkle/wave layers from covering the text area */
   .gold-waves, .hero-glow { display: none; }
 
-  /* Compact floating contact buttons */
-  .floating-contact { right: 16px; bottom: 84px; gap: 12px; }
-  .fab { width: 52px; height: 52px; font-size: 22px; }
-  .fab-call { font-size: 19px; }
-  .fab::after { display: none; }
+  /* Compact frosted contact buttons */
+  .contact-bar { right: 16px; bottom: 84px; gap: 10px; }
+  .cbar-btn { padding: 11px 18px; font-size: 12.5px; gap: 8px; }
+  .cbar-btn i { font-size: 16px; }
   .pin-label {
     font-size: 12px; letter-spacing: 1px; top: -40px;
     white-space: normal; max-width: 110px; line-height: 1.15;
