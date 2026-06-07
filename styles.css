@@ -798,7 +798,26 @@ img { max-width: 100%; display: block; }
   padding: 22px 0;
   text-align: center;
 }
-.footer-bottom span { font-size: 12px; letter-spacing: 2px; color: var(--gold-deep); }
+.footer-bottom > span { display: block; font-size: 12px; letter-spacing: 2px; color: var(--gold-deep); }
+
+/* Builder credit — matches the luxury theme, subtle */
+.footer-bottom .credit {
+  margin-top: 10px;
+  font-size: 12px;
+  letter-spacing: .6px;
+  color: var(--text-dim);
+}
+.web4medya {
+  font-weight: 600;
+  letter-spacing: .8px;
+  transition: text-shadow .25s ease, opacity .25s ease;
+}
+.web4medya .w4-text { color: #ffffff; }
+.web4medya .w4-num  { color: #3b9bff; }
+.web4medya:hover {
+  opacity: .92;
+  text-shadow: 0 0 10px rgba(59,155,255,.55);
+}
 
 /* ===================== FLOATING CONTACT (WhatsApp + Call) ===================== */
 .floating-contact {
