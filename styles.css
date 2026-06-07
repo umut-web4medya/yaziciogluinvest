@@ -825,7 +825,7 @@ img { max-width: 100%; display: block; }
 /* ===================== CONTACT BUTTONS (frosted glass, bottom-right) ===================== */
 .contact-bar {
   position: fixed;
-  right: 18px; bottom: 88px;     /* same spot as the old buttons */
+  right: 18px; bottom: 70px;     /* a touch lower */
   z-index: 90;
   display: none;                 /* shown on mobile/tablet */
   flex-direction: column;
@@ -963,7 +963,7 @@ img { max-width: 100%; display: block; }
   .gold-waves, .hero-glow { display: none; }
 
   /* Compact frosted contact buttons */
-  .contact-bar { right: 16px; bottom: 84px; gap: 10px; }
+  .contact-bar { right: 16px; bottom: 66px; gap: 10px; }
   .cbar-btn { padding: 11px 18px; font-size: 12.5px; gap: 8px; }
   .cbar-btn i { font-size: 16px; }
   .pin-label {
