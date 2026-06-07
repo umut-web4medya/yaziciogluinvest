@@ -267,28 +267,21 @@ img { max-width: 100%; display: block; }
 /* Wrapper is transparent on desktop — sides keep their absolute diagonal split */
 .hero-media { display: contents; }
 
-/* Directional swipe cues — point to the section reached by swiping (mobile gallery) */
+/* Directional swipe cues — minimal glowing arrows (mobile gallery) */
 .slide-cue {
   display: none;                 /* desktop shows both sides → no swipe needed */
   position: absolute; top: 50%; z-index: 6;
-  align-items: center; gap: 8px;
-  padding: 9px 15px;
-  font-family: var(--serif); font-size: 12px; letter-spacing: 2px;
   color: var(--gold-light);
-  background: linear-gradient(180deg, rgba(10,9,6,.62), rgba(10,9,6,.40));
-  border: 1px solid var(--border-gold);
-  border-radius: 30px;
-  text-shadow: 0 1px 6px rgba(0,0,0,.9);
-  box-shadow: 0 0 18px rgba(212,175,55,.22), inset 0 0 12px rgba(212,175,55,.08);
-  white-space: nowrap;
+  font-size: 26px; line-height: 1;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,.85)) drop-shadow(0 0 9px rgba(212,175,55,.55));
 }
-.slide-cue i { color: var(--gold); font-size: 14px; }
-.cue-next { right: 14px; transform: translateY(-50%); }
-.cue-prev { left: 14px;  transform: translateY(-50%); }
+.cue-next { right: 16px; transform: translateY(-50%); }
+.cue-prev { left: 16px;  transform: translateY(-50%); }
+.slide-cue i { display: block; }
 .cue-next i { animation: cueNudgeR 1.5s ease-in-out infinite; }
 .cue-prev i { animation: cueNudgeL 1.5s ease-in-out infinite; }
-@keyframes cueNudgeR { 0%,100% { transform: translateX(0); opacity: .6; } 50% { transform: translateX(6px); opacity: 1; } }
-@keyframes cueNudgeL { 0%,100% { transform: translateX(0); opacity: .6; } 50% { transform: translateX(-6px); opacity: 1; } }
+@keyframes cueNudgeR { 0%,100% { transform: translateX(0); opacity: .5; } 50% { transform: translateX(7px); opacity: 1; } }
+@keyframes cueNudgeL { 0%,100% { transform: translateX(0); opacity: .5; } 50% { transform: translateX(-7px); opacity: 1; } }
 
 .hero-side::after {
   content: ""; position: absolute; inset: 0;
